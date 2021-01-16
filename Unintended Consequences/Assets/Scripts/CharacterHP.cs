@@ -9,6 +9,9 @@ public class CharacterHP : NetworkBehaviour
     [SyncVar]
     public float currentHealth;
     private Slider mySlider;
+
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +23,6 @@ public class CharacterHP : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-            DealDamage(2);
 
         mySlider.value = 1 - currentHealth / maxHealth;
     }
@@ -29,11 +30,13 @@ public class CharacterHP : NetworkBehaviour
 
 
 
-    public void DealDamage(float damageValue)
+    public void onDamage(float damage)
     {
-        currentHealth -= damageValue;
+        currentHealth -= damage;
         if (currentHealth <= 0)
-            Die();
+        {
+            Destroy(gameObject);
+        }
     }
 
 
