@@ -12,12 +12,13 @@ public class PlayerShooter : NetworkBehaviour
 
     [SyncVar]
     private Color bulletColor;
-   
+
+    ParticleSystem myParticleSystem;
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log(NetworkServer.connections.Count - 1);
-
+        myParticleSystem = GetComponentInChildren<ParticleSystem>();
         
         // Change color of bullet for different players
         bulletColor = bulletColors[NetworkServer.connections.Count - 1]; // -1 to ignore current player
@@ -38,6 +39,7 @@ public class PlayerShooter : NetworkBehaviour
         GameObject bulletClone = Instantiate(bulletToFire, firePoint.position, Quaternion.Euler(0f, 0f, angle));
         bulletClone.GetComponent<BulletController>().dontDamage = this.gameObject;
         bulletClone.GetComponent<SpriteRenderer>().color = bulletColor;
+        if (myParticleSystem) myParticleSystem.Play();
     }
 
     void Update()

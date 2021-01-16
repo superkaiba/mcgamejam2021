@@ -263,6 +263,8 @@ MonoBehaviour:
   syncInterval: 0.1
   waitTime: 0.1
   speed: 15
+  dontDamage: {fileID: 0}
+  myParticleSystem: {fileID: 4228553635631068289, guid: 65b30608274c9e5499d8a28b1ea43d57, type: 3}
 --- !u!114 &116039543911540000
 MonoBehaviour:
   m_ObjectHideFlags: 0

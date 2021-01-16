@@ -9,6 +9,7 @@ public class BulletController : NetworkBehaviour
     public float speed = 10f;
     private Rigidbody2D myRb;
     public GameObject dontDamage;
+    public GameObject myParticleSystem;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class BulletController : NetworkBehaviour
         
         if (Enemy.gameObject.CompareTag("Collidable"))
         {
+            Instantiate(myParticleSystem, transform.position, transform.rotation);
             Destroy(gameObject);
         }
         if (Enemy.gameObject.CompareTag("Player"))
@@ -36,7 +38,9 @@ public class BulletController : NetworkBehaviour
 
             // Send message to player object to deal damage to itself
             Enemy.gameObject.SendMessage("onDamage", 2.0);
+            Instantiate(myParticleSystem, transform.position, transform.rotation);
             Destroy(gameObject);
+            
         }
     }
     IEnumerator waitThenSetActive()
