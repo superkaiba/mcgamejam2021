@@ -17,4 +17,16 @@ public class BulletController : NetworkBehaviour
     {
         myRb.velocity = transform.right * speed;
     }
+
+    public void OnTriggerEnter2D(Collider2D Enemy)
+    {
+        Debug.Log("hitEmeneauisfh");
+        if (Enemy.gameObject.CompareTag("Opponent"))
+        {
+            Enemy.gameObject.SendMessage("onDamage", 2.0);
+        }
+    }
+
 }
+
+
