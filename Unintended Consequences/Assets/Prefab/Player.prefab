@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 7979093979127147251}
-  bulletToFire: {fileID: 2503620718857629353, guid: 31eca69e0ef2dce4a9fc0f1b9806efa4, type: 3}
+  bulletToFire: {fileID: 8317722361820975354, guid: 31eca69e0ef2dce4a9fc0f1b9806efa4, type: 3}
 --- !u!1 &7979093979127147252
 GameObject:
   m_ObjectHideFlags: 0
