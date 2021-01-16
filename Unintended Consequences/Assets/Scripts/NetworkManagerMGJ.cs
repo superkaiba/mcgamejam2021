@@ -8,7 +8,8 @@ public class NetworkManagerMGJ : NetworkManager
     // Start is called before the first frame update
     public Transform LeftPlayerSpawn;
     public Transform RightPlayerSpawn;
-
+    public int currentLevel = 0;
+    public string[] levelNames = { "Level 2", "Level 3" };
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
             // add player at correct spawn position
@@ -22,5 +23,10 @@ public class NetworkManagerMGJ : NetworkManager
             base.OnServerDisconnect(conn);
         
         }
+
+    public void NextScene()
+    {
+        NetworkManager.singleton.ServerChangeScene(levelNames[1]);
+    }
 
 }

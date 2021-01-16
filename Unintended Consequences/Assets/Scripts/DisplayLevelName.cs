@@ -1,22 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+public class DisplayLevelName : MonoBehaviour
 {
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
-    public void NextLevel()
-    {
-
-    }
+    Text myText;
     // Start is called before the first frame update
     void Start()
     {
-        
+        myText = GetComponent<Text>();
+        myText.text = SceneManager.GetActiveScene().name;
     }
 
     // Update is called once per frame

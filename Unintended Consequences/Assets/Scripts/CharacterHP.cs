@@ -9,8 +9,8 @@ public class CharacterHP : NetworkBehaviour
     [SyncVar]
     public float currentHealth;
     private Slider mySlider;
-    public SpriteRenderer mySpriteRenderer; 
-
+    public SpriteRenderer mySpriteRenderer;
+    private NetworkManagerMGJ myNetworkManager;
     
     // Start is called before the first frame update
     void Start()
@@ -19,6 +19,7 @@ public class CharacterHP : NetworkBehaviour
         maxHealth = 20f;
         currentHealth = maxHealth;
         mySlider = GetComponentInChildren<Slider>();
+        myNetworkManager = GameObject.FindGameObjectWithTag("manager").GetComponent<NetworkManagerMGJ>();
     }
 
     // Update is called once per frame
@@ -26,6 +27,11 @@ public class CharacterHP : NetworkBehaviour
     {
 
         mySlider.value = 1 - currentHealth / maxHealth;
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Debug.Log("Dying");
+            Die();
+        }
     }
 
 
@@ -37,17 +43,21 @@ public class CharacterHP : NetworkBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 
 
     void Die()
     {
-        currentHealth = 0;
-        Debug.Log("you have died");
+        Destroy(gameObject);
+        CmdNextScene();
     }
-
+    [Command]
+    void CmdNextScene()
+    {
+        myNetworkManager.NextScene();
+    }
 
     IEnumerator Flash()
     {
