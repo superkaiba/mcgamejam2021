@@ -6,6 +6,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D myRigidBody;
+    private Animator myAnimator;
+    private SpriteRenderer mySpriteRenderer;
+    private bool up = false;
+    private bool down = false;
+    private bool left = false;
+    private bool right = false;
+
     [Header("Controls")]
     public KeyCode upKey;
     public KeyCode downKey;
@@ -15,16 +22,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 velocityVector;
     public float movementVelocity = 1f;
 
-
-    private Camera theCam;
-
     public Transform firePoint;
     public GameObject bulletToFire;
     // Start is called before the first frame update
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
-        theCam = Camera.main;
+        myAnimator = GetComponent<Animator>();
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -33,27 +38,50 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(upKey))
         {
             velocityVector.y = movementVelocity;
+            if (myRigidBody.velocity.y <= 0) myAnimator.SetTrigger("up");
+            myAnimator.SetBool("idle", false);
         }
 
         else if (Input.GetKey(downKey))
         {
             velocityVector.y = -movementVelocity;
+            if (myRigidBody.velocity.y >= 0)  myAnimator.SetTrigger("down");
+            myAnimator.SetBool("idle", false);
         }
 
-        else velocityVector.y = 0f;
+        else
+        {
+            velocityVector.y = 0f;
+        }
 
         if (Input.GetKey(leftKey))
         {
             velocityVector.x = -movementVelocity;
+            if (myRigidBody.velocity.x >= 0) myAnimator.SetTrigger("left");
+            myAnimator.SetBool("idle", false);
+            mySpriteRenderer.flipX = true;
+           
         }
 
         else if (Input.GetKey(rightKey))
         {
             velocityVector.x = movementVelocity;
+            if (myRigidBody.velocity.x <= 0) myAnimator.SetTrigger("right");
+            myAnimator.SetBool("idle", false);
+            mySpriteRenderer.flipX = false;
         }
 
         else velocityVector.x = 0f;
 
+        if (velocityVector.x == 0f && velocityVector.y == 0f)
+        {
+            myAnimator.SetBool("idle", true);
+            myAnimator.ResetTrigger("right");
+            myAnimator.ResetTrigger("left");
+            myAnimator.ResetTrigger("up");
+            myAnimator.ResetTrigger("down");
+
+        }
         myRigidBody.velocity = velocityVector;
 
 
