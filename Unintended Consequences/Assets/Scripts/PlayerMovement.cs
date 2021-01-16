@@ -8,10 +8,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D myRigidBody;
     private Animator myAnimator;
     private SpriteRenderer mySpriteRenderer;
-    private bool up = false;
-    private bool down = false;
-    private bool left = false;
-    private bool right = false;
 
     [Header("Controls")]
     public KeyCode upKey;
@@ -22,8 +18,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 velocityVector;
     public float movementVelocity = 1f;
 
-    public Transform firePoint;
-    public GameObject bulletToFire;
     // Start is called before the first frame update
     void Start()
     {
@@ -83,22 +77,6 @@ public class PlayerMovement : MonoBehaviour
 
         }
         myRigidBody.velocity = velocityVector;
-
-
-        Vector3 mouse = Input.mousePosition;
-
-        Vector3 screenPoint = Camera.main.WorldToScreenPoint(transform.localPosition);
-
-        Vector2 offset = new Vector2(mouse.x - screenPoint.x, mouse.y - screenPoint.y);
-
-        float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(0f, 0f, angle);
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Instantiate(bulletToFire, firePoint.position, transform.rotation);
-        }
     }
 
 
