@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 velocityVector;
     public float movementVelocity = 1f;
 
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -78,7 +79,5 @@ public class PlayerMovement : MonoBehaviour
         }
         myRigidBody.velocity = velocityVector;
     }
-
-
     
 }
