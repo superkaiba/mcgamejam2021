@@ -36,6 +36,7 @@ public class PlayerShooter : NetworkBehaviour
     void RpcSpawnBullet(float angle)
     {
         GameObject bulletClone = Instantiate(bulletToFire, firePoint.position, Quaternion.Euler(0f, 0f, angle));
+        bulletClone.GetComponent<BulletController>().dontDamage = this.gameObject;
         bulletClone.GetComponent<SpriteRenderer>().color = bulletColor;
     }
 

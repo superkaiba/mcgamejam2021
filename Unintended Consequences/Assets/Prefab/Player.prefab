@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 53059351}
   - component: {fileID: 53059350}
   - component: {fileID: 53059349}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Player Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &53059350
 MonoBehaviour:
@@ -110,7 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3085989521878990313}
   - component: {fileID: 6860034415182781894}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6658458575306909779}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 9192104265922468537}
   - component: {fileID: 3180139353682952957}
   - component: {fileID: 6357531431900055563}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 2826359442788801818}
   - component: {fileID: 4797523349960171983}
   - component: {fileID: 7648450280753419986}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6584226892260674761}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: -3966852814622005784}
   - component: {fileID: 2112878079170764949}
   - component: {fileID: 7403769254632482515}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -492,7 +492,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2311659948842064771, guid: ff3c2b788b99f524291e9ffe8e1d3daa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -531,7 +531,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7979093978011183067}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -674,6 +674,7 @@ MonoBehaviour:
   syncInterval: 0.1
   maxHealth: 0
   currentHealth: 0
+  mySpriteRenderer: {fileID: 0}
 --- !u!1 &7979093979127147252
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7979093979127147251}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shot Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}

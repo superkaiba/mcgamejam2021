@@ -4,10 +4,11 @@ using UnityEngine;
 using Mirror;
 public class BulletController : NetworkBehaviour
 {
-    public float waitTime = 0.5f;
+    public float waitTime = 0.1f;
     bool active = false;
     public float speed = 10f;
     private Rigidbody2D myRb;
+    public GameObject dontDamage;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,21 +24,18 @@ public class BulletController : NetworkBehaviour
 
     public void OnTriggerEnter2D(Collider2D Enemy)
     {
-        if (!active)
-        {
-            return;
-        }
-
-        Debug.Log("hitEmeneauisfh");
-        if (Enemy.gameObject.CompareTag("Player"))
-        {
-
-            Enemy.gameObject.SendMessage("onDamage", 2.0);
-            Destroy(gameObject);
-        }
-
+        
         if (Enemy.gameObject.CompareTag("Collidable"))
         {
+            Destroy(gameObject);
+        }
+        if (Enemy.gameObject.CompareTag("Player"))
+        {
+            // If bullet was spawned by current player, don't damage current player
+            if (Enemy.gameObject == dontDamage) return;
+
+            // Send message to player object to deal damage to itself
+            Enemy.gameObject.SendMessage("onDamage", 2.0);
             Destroy(gameObject);
         }
     }
