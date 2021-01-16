@@ -7,20 +7,36 @@ public class PlayerShooter : NetworkBehaviour
 
     public Transform firePoint;
     public GameObject bulletToFire;
+
+    public Color[] bulletColors;
+
+    [SyncVar]
+    private Color bulletColor;
+   
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log(NetworkServer.connections.Count - 1);
+        // Change color of bullet for different players
+        bulletColor = bulletColors[NetworkServer.connections.Count - 1]; // -1 to ignore current player
     }
 
     // Update is called once per frame
     [Command]
     void CmdSpawnBullet(float angle)
     {
-    	GameObject bulletClone = Instantiate(bulletToFire, firePoint.position, Quaternion.Euler(0f, 0f, angle));
-    	//bulletClone.GetComponent<Rigidbody>().velocity = nozzle.transform.forward * bulletSpeed;
-    	NetworkServer.Spawn(bulletClone);
+        //bulletClone.GetComponent<Rigidbody>().velocity = nozzle.transform.forward * bulletSpeed;
+        RpcSpawnBullet(angle);
     }
+
+    [ClientRpc]
+
+    void RpcSpawnBullet(float angle)
+    {
+        GameObject bulletClone = Instantiate(bulletToFire, firePoint.position, Quaternion.Euler(0f, 0f, angle));
+        bulletClone.GetComponent<SpriteRenderer>().color = bulletColor;
+    }
+
     void Update()
     {
    		if (isLocalPlayer){
