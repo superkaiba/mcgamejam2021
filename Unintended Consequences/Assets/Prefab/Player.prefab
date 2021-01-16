@@ -531,7 +531,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7979093978011183067}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -579,6 +579,9 @@ MonoBehaviour:
   syncInterval: 0.1
   firePoint: {fileID: 7979093979127147251}
   bulletToFire: {fileID: 8317722361820975354, guid: 31eca69e0ef2dce4a9fc0f1b9806efa4, type: 3}
+  bulletColors:
+  - {r: 0.06672692, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &9062303313555947524
 MonoBehaviour:
   m_ObjectHideFlags: 0
