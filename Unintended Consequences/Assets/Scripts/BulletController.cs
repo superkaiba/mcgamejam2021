@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class BulletController : MonoBehaviour
+using Mirror;
+public class BulletController : NetworkBehaviour
 {
     public float speed = 10f;
     private Rigidbody2D myRb;

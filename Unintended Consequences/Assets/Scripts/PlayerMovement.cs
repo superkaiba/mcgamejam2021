@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     private Rigidbody2D myRigidBody;
     private Animator myAnimator;
@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    	if (isLocalPlayer){
+
         if (Input.GetKey(upKey))
         {
             velocityVector.y = movementVelocity;
@@ -78,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
         myRigidBody.velocity = velocityVector;
+    }
     }
     
 }

@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerShooter : MonoBehaviour
+using Mirror;
+public class PlayerShooter : NetworkBehaviour
 {
 
     public Transform firePoint;
@@ -14,8 +14,16 @@ public class PlayerShooter : MonoBehaviour
     }
 
     // Update is called once per frame
+    [Command]
+    void CmdSpawnBullet(float angle)
+    {
+    	GameObject bulletClone = Instantiate(bulletToFire, firePoint.position, Quaternion.Euler(0f, 0f, angle));
+    	//bulletClone.GetComponent<Rigidbody>().velocity = nozzle.transform.forward * bulletSpeed;
+    	NetworkServer.Spawn(bulletClone);
+    }
     void Update()
     {
+   		if (isLocalPlayer){
         Vector3 mouse = Input.mousePosition;
 
         Vector3 screenPoint = Camera.main.WorldToScreenPoint(transform.localPosition);
@@ -28,7 +36,8 @@ public class PlayerShooter : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(bulletToFire, firePoint.position, Quaternion.Euler(0f, 0f, angle));
+            CmdSpawnBullet(angle);
         }
+    }
     }
 }
