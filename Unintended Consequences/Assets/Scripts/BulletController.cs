@@ -29,8 +29,9 @@ public class BulletController : NetworkBehaviour
         }
 
         Debug.Log("hitEmeneauisfh");
-        if (Enemy.gameObject.CompareTag("Opponent"))
+        if (Enemy.gameObject.CompareTag("Player"))
         {
+
             Enemy.gameObject.SendMessage("onDamage", 2.0);
             Destroy(gameObject);
         }
