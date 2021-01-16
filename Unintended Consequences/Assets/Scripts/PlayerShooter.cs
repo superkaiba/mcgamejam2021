@@ -17,6 +17,8 @@ public class PlayerShooter : NetworkBehaviour
     void Start()
     {
         Debug.Log(NetworkServer.connections.Count - 1);
+
+        
         // Change color of bullet for different players
         bulletColor = bulletColors[NetworkServer.connections.Count - 1]; // -1 to ignore current player
     }
