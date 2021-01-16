@@ -45,7 +45,6 @@ public class CharacterHP : NetworkBehaviour
     void Die()
     {
         currentHealth = 0;
-
         Debug.Log("you have died");
     }
 
