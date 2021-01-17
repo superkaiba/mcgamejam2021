@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-
+using UnityEngine.SceneManagement;
 public class NetworkManagerMGJ : NetworkManager
 {
     // Start is called before the first frame update
     public Transform LeftPlayerSpawn;
     public Transform RightPlayerSpawn;
+    public Vector3 startingPosition1;
+    public Vector3 startingPosition2;
+
     public int currentLevel = 0;
-    public string[] levelNames = { "Level 2", "Level 3" };
+    public string[] levelNames = { "Level 1", "Level " };
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
             // add player at correct spawn position
-            Transform start = numPlayers == 0 ? LeftPlayerSpawn : RightPlayerSpawn;
-            GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
+            Vector3 start = numPlayers == 0 ? startingPosition1 : startingPosition2;
+            GameObject player = Instantiate(playerPrefab, start, Quaternion.identity);
             NetworkServer.AddPlayerForConnection(conn, player);
 
     }
@@ -24,9 +27,24 @@ public class NetworkManagerMGJ : NetworkManager
         
         }
 
+    public void OnServerSceneChanged()
+    {
+        foreach (var conn in NetworkServer.connections)
+        {
+            Vector3 start = numPlayers == 0 ? startingPosition1 : startingPosition2;
+            GameObject player = Instantiate(playerPrefab, start, Quaternion.identity);
+            NetworkServer.AddPlayerForConnection(conn.Value, player);
+        }
+    }
     public void NextScene()
     {
-        NetworkManager.singleton.ServerChangeScene(levelNames[1]);
+        ServerChangeScene("Level " + Random.Range(1, SceneManager.sceneCountInBuildSettings + 1));
+        foreach (var conn in NetworkServer.connections)
+        {
+            NetworkServer.SetClientReady(conn.Value);
+        }
+
+        
     }
 
 }
