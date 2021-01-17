@@ -7066,6 +7066,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1455540421, guid: 8c8bc2d6a67064d4693a3648a4f17a5a, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1008738984}
     - target: {fileID: 5130460150396873029, guid: 8c8bc2d6a67064d4693a3648a4f17a5a, type: 3}
       propertyPath: m_Name
       value: NetworkManager
