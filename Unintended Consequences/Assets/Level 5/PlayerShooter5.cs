@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-public class PlayerShooter : NetworkBehaviour
+public class PlayerShooter5 : NetworkBehaviour
 {
     public AudioSource myAudioSource;
     public Transform firePoint;
@@ -44,7 +44,6 @@ public class PlayerShooter : NetworkBehaviour
         GameObject bulletClone = Instantiate(bulletToFire, firePoint.position, Quaternion.Euler(0f, 0f, angle));
         bulletClone.GetComponent<BulletController>().dontDamage = this.gameObject;
         bulletClone.GetComponent<SpriteRenderer>().color = bulletColor;
-        myAudioSource.pitch = Random.Range(0.75f, 1.25f);
         myAudioSource.Play();
         if (myParticleSystem) myParticleSystem.Play();
     }
@@ -60,8 +59,8 @@ public class PlayerShooter : NetworkBehaviour
             Vector2 offset = new Vector2(mouse.x - screenPoint.x, mouse.y - screenPoint.y);
             float angle;
             // For level 5
-            if (myNetworkManager.currentLevel == 5) angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg + Random.Range(-90, 90);
-            else angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+            angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg + Random.Range(-90, 90);
+           
 
             //transform.rotation = Quaternion.Euler(0f, 0f, angle);
 

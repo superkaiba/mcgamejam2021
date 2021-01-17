@@ -11,7 +11,7 @@ public class NetworkManagerMGJ : NetworkManager
     public Vector3 startingPosition1;
     public Vector3 startingPosition2;
 
-    public int currentLevel = 0;
+    public int currentLevel;
     public string[] levelNames = { "Level 1", "Level " };
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
@@ -31,6 +31,8 @@ public class NetworkManagerMGJ : NetworkManager
     {
         foreach (var conn in NetworkServer.connections)
         {
+            Debug.Log(currentLevel);
+            Debug.Log("nani");
             Vector3 start = numPlayers == 0 ? startingPosition1 : startingPosition2;
             GameObject player = Instantiate(playerPrefab, start, Quaternion.identity);
             NetworkServer.AddPlayerForConnection(conn.Value, player);
@@ -38,7 +40,9 @@ public class NetworkManagerMGJ : NetworkManager
     }
     public void NextScene()
     {
-        ServerChangeScene("Level " + Random.Range(1, SceneManager.sceneCountInBuildSettings + 1));
+        currentLevel = Random.Range(1, SceneManager.sceneCountInBuildSettings + 1);
+        playerPrefab = playerPrefabs[currentLevel - 1];
+        ServerChangeScene("Level " + currentLevel);
         foreach (var conn in NetworkServer.connections)
         {
             NetworkServer.SetClientReady(conn.Value);

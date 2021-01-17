@@ -71,7 +71,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
@@ -149,12 +149,12 @@ GameObject:
   - component: {fileID: 8317722361820975358}
   - component: {fileID: 8317722361820975353}
   - component: {fileID: 8317722361820975352}
-  - component: {fileID: 8317722361820975355}
   - component: {fileID: 116039543911540000}
   - component: {fileID: -3330366454486236159}
   - component: {fileID: 208944988642846683}
+  - component: {fileID: 8283758710805317827}
   m_Layer: 0
-  m_Name: bullet
+  m_Name: bullet 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,24 +247,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8317722361820975355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8317722361820975354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455a484b861e3454180a6504f1a7c7c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  waitTime: 0.1
-  speed: 15
-  dontDamage: {fileID: 0}
-  myParticleSystem: {fileID: 4228553635631068289, guid: 65b30608274c9e5499d8a28b1ea43d57, type: 3}
 --- !u!114 &116039543911540000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,3 +307,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8283758710805317827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8317722361820975354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca9d14f69a3c364ca051f866c5c8ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  waitTime: 0.1
+  speed: 10
+  dontDamage: {fileID: 0}
+  myParticleSystem: {fileID: 4228553635631068289, guid: 65b30608274c9e5499d8a28b1ea43d57, type: 3}
