@@ -6,8 +6,10 @@ using Mirror;
 public class CharacterHP : NetworkBehaviour
 {
     public float maxHealth;
+
     [SyncVar]
     public float currentHealth;
+
     private Slider mySlider;
     public SpriteRenderer mySpriteRenderer;
     private NetworkManagerMGJ myNetworkManager;
@@ -34,12 +36,11 @@ public class CharacterHP : NetworkBehaviour
         }
     }
 
-
-
-
+    [Command]
     public void onDamage(float damage)
     {
-        StartCoroutine(Flash());
+        Debug.Log("Getting damaged");
+        StartFlashCoroutineOnClients();
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
@@ -50,15 +51,30 @@ public class CharacterHP : NetworkBehaviour
 
     void Die()
     {
+        if (isServer) CmdNextScene();
+        ClientDie();
         Destroy(gameObject);
-        CmdNextScene();
     }
-    [Command]
+
+    [ClientRpc]
+
+    void ClientDie()
+    {
+        Destroy(gameObject);
+    }
+
+    [Command(ignoreAuthority =true)]
     void CmdNextScene()
     {
         myNetworkManager.NextScene();
     }
 
+    [ClientRpc]
+    void StartFlashCoroutineOnClients()
+    {
+        StartCoroutine(Flash());
+    }
+        
     IEnumerator Flash()
     {
         Debug.Log("hello");
