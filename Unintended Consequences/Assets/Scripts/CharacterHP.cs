@@ -29,11 +29,6 @@ public class CharacterHP : NetworkBehaviour
     {
 
         mySlider.value = 1 - currentHealth / maxHealth;
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Debug.Log("Dying");
-            Die();
-        }
     }
 
     [Command]

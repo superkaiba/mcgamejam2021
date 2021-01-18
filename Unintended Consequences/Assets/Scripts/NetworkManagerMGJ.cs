@@ -5,6 +5,7 @@ using Mirror;
 using UnityEngine.SceneManagement;
 public class NetworkManagerMGJ : NetworkManager
 {
+    public GameObject[] playerPrefabs;
     // Start is called before the first frame update
     public Transform LeftPlayerSpawn;
     public Transform RightPlayerSpawn;
@@ -13,6 +14,12 @@ public class NetworkManagerMGJ : NetworkManager
 
     public int currentLevel;
     public string[] levelNames = { "Level 1", "Level " };
+
+    public override void Start()
+    {
+        playerPrefab = playerPrefabs[0];
+        base.Start();
+    }
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
             // add player at correct spawn position
